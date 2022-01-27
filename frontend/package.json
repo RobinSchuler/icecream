@@ -9,7 +9,7 @@
     "serve": "serve ./dist",
     "clean": "rm -rf node_modules/",
     "clean:dist": "rm -rf dist/",
-    "test": "jest jest.config.js"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",

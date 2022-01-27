@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import AddIce from './AddIce';
 import { HashRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import { Ice } from 'shared';
+import { categories, Ice } from 'shared';
 
 const testDate: Ice = {
   name: 'New Ice',
@@ -91,26 +91,37 @@ describe('AddIce', () => {
       </HashRouter>
     );
     const name = screen.getByText('Name');
+
     const allergenics = screen.getByText('Lebensmittelunverträglichkeiten');
     const nutritionalValue = screen.getByText('Nährwert');
     const price = screen.getByText('VK Preis');
 
     userEvent.type(name, testDate.name);
     // react select is weird !!!
-    const reactSelect2 = document.getElementById('react-select-2-input');
-    if (reactSelect2 && testDate.categorie) {
+    // not nice, since its implementation detail
+    // parent has the provided id and 2 inputs, the one that is conneted to the label is the wrong one.
+    // So we have to search the parent for the input
+    const categorie = document.getElementById('categorie');
+    const categorieInputs = categorie?.querySelectorAll('input');
+    const firstCategoryInput = categorieInputs && categorieInputs.length >= 1 && categorieInputs[0];
+
+    if (firstCategoryInput && testDate.categorie) {
       // klick on resolved input, hence the id, to open dropdown, then select an option
-      fireEvent.focus(reactSelect2);
-      fireEvent.keyDown(reactSelect2, { key: 'ArrowDown', code: 40 });
+      fireEvent.focus(firstCategoryInput);
+      fireEvent.keyDown(firstCategoryInput, { key: 'ArrowDown', code: 40 });
       userEvent.click(screen.getByText(testDate.categorie));
     }
 
-    const reactSelect3 = document.getElementById('react-select-3-input');
+    const ingredients = document.getElementById('ingredients');
+    const ingredientsInputs = ingredients?.querySelectorAll('input');
+    const firstIngredientInput =
+      ingredientsInputs && ingredientsInputs.length >= 1 && ingredientsInputs[0];
+
     testDate.ingredients.forEach((ingredient) => {
-      if (reactSelect3 && ingredient) {
+      if (firstIngredientInput && ingredient) {
         // klick on resolved input, hence the id, to open dropdown, then select an option
-        fireEvent.focus(reactSelect3);
-        fireEvent.keyDown(reactSelect3, { key: 'ArrowDown', code: 40 });
+        fireEvent.focus(firstIngredientInput);
+        fireEvent.keyDown(firstIngredientInput, { key: 'ArrowDown', code: 40 });
         userEvent.click(screen.getByText(ingredient));
       }
     });
