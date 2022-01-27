@@ -67,7 +67,7 @@ export const AddIce = () => {
           event.preventDefault();
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="columnContainer">
           <label htmlFor="name">Name</label>
           <input
             id="name"
@@ -79,7 +79,7 @@ export const AddIce = () => {
               setIce({ ...ice, name: event.target.value });
             }}
           />
-          <label htmlFor="categorie" style={{ paddingTop: 20 }}>
+          <label htmlFor="categorie" className="pt20">
             Kategorie
           </label>
           <Select
@@ -93,9 +93,15 @@ export const AddIce = () => {
             onChange={(selectedOption) => {
               setIce({ ...ice, categorie: selectedOption?.value });
             }}
+            styles={{
+              control: (base) => ({
+                ...base,
+                boxShadow: 'none',
+              }),
+            }}
           />
 
-          <label htmlFor="ingredients" style={{ paddingTop: 20 }}>
+          <label htmlFor="ingredients" className="pt20">
             Zutaten
           </label>
           <CreatableSelect
@@ -110,8 +116,14 @@ export const AddIce = () => {
                 ingredients: selectedOptions.map((selectedOption) => selectedOption.value),
               });
             }}
+            styles={{
+              control: (base) => ({
+                ...base,
+                boxShadow: 'none',
+              }),
+            }}
           />
-          <label htmlFor="allergenics" style={{ paddingTop: 20 }}>
+          <label htmlFor="allergenics" className="pt20">
             Lebensmittelunverträglichkeiten
           </label>
           <textarea
@@ -124,7 +136,7 @@ export const AddIce = () => {
               setIce({ ...ice, allergenics: event.target.value });
             }}
           />
-          <label htmlFor="nutritionalValue" style={{ paddingTop: 20 }}>
+          <label htmlFor="nutritionalValue" className="pt20">
             Nährwert
           </label>
           <input
@@ -138,7 +150,7 @@ export const AddIce = () => {
               setIce({ ...ice, nutritionalValue: Number(event.target.value) });
             }}
           />
-          <label htmlFor="price" style={{ paddingTop: 20 }}>
+          <label htmlFor="price" className="pt20">
             VK Preis
           </label>
           <input
@@ -153,7 +165,7 @@ export const AddIce = () => {
             }}
           />
         </div>
-        <button name="add" type="button" onClick={handleSubmit} style={{ marginTop: 20 }}>
+        <button name="add" type="button" onClick={handleSubmit} className="mt20">
           Hinzufügen
         </button>
         <button

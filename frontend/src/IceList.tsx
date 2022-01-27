@@ -22,10 +22,8 @@ export const IceList = () => {
   return (
     <div className="container">
       <div
+        className="rowContainerBetween"
         style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
@@ -39,31 +37,22 @@ export const IceList = () => {
         </button>
       </div>
       {ice.map((iceElement) => {
-        console.log('for each', iceElement);
         return (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              padding: 20,
-              marginBottom: 20,
-              border: '1px solid #ddd',
-              borderRadius: 12,
-              backgroundColor: 'white',
-            }}
-          >
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <label>Name: {iceElement.name}</label>
-                <label>Kategorie: {iceElement.categorie}</label>
-                <label>Nährwert: {iceElement.nutritionalValue} kcal / 100g</label>
+          <div className="columnContainerBetween styledList">
+            <div className="rowContainerBetween">
+              <div className="columnContainerBetween">
+                <div className="rowContainer">
+                  <label>Name:&nbsp;</label>
+                  <span>{iceElement.name}</span>
+                </div>
+                <div className="rowContainer">
+                  <label>Kategorie:&nbsp;</label>
+                  <span>{iceElement.categorie}</span>
+                </div>
+                <div className="rowContainer">
+                  <label>Nährwert:&nbsp;</label>
+                  <span>{iceElement.nutritionalValue} kcal / 100g</span>
+                </div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <span style={{ fontWeight: 'bold', fontSize: '2rem' }}>{iceElement.price}</span>
@@ -76,24 +65,15 @@ export const IceList = () => {
             <label>
               Zutaten:&nbsp;
               {iceElement.ingredients.map((ingredient) => (
-                <div
-                  style={{
-                    fontSize: '1.2rem',
-                    padding: '3px 10px',
-                    borderRadius: 20,
-                    display: 'inline-flex',
-                    margin: '5px 5px 0px 0px',
-                    backgroundColor: 'lightgray',
-                  }}
-                >
-                  {ingredient}
-                </div>
+                <div className="circled">{ingredient}</div>
               ))}
             </label>
-            <label>
-              <strong style={{ color: '#ff2400' }}>Allergene: </strong>
-              {iceElement.allergenics}
-            </label>
+            <div className="rowContainer">
+              <label>
+                <strong style={{ color: '#ff2400' }}>Allergene: </strong>&nbsp;
+              </label>
+              <span>{iceElement.allergenics}</span>
+            </div>
           </div>
         );
       })}

@@ -32,3 +32,7 @@ yarn install
 ```bash
 yarn dev
 ```
+
+#### Anwendung erreichbar unter:
+
+http://localhost:8080/
