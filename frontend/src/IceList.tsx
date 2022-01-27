@@ -35,7 +35,7 @@ export const IceList = () => {
             navigate('/addIce');
           }}
         >
-          Add
+          Hinzufügen
         </button>
       </div>
       {ice.map((iceElement) => {
