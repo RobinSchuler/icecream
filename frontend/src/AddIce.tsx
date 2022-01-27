@@ -99,6 +99,13 @@ export const AddIce = () => {
                 boxShadow: 'none',
               }),
             }}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: '#33c3f0',
+              },
+            })}
           />
 
           <label htmlFor="ingredients" className="pt20">
@@ -122,6 +129,13 @@ export const AddIce = () => {
                 boxShadow: 'none',
               }),
             }}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: '#33c3f0',
+              },
+            })}
           />
           <label htmlFor="allergenics" className="pt20">
             Lebensmittelunverträglichkeiten
