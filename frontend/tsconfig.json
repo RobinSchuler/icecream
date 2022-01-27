@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    /* Basic Options */
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules", "**/*.spec.ts"],
+  "references": [{ "path": "../shared" }]
+}
